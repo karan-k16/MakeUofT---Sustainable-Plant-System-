@@ -22,10 +22,12 @@ recording = False
 depth_cm = 50  # Assumed depth value, updated via User
 
 # HSV Ranges for Color Detection
-LOWER_TOP_MARKER = np.array([0, 120, 70])   # RED
-UPPER_TOP_MARKER = np.array([10, 255, 255])
+LOWER_TOP_MARKER = np.array([35, 50, 50])   # GREEN
+UPPER_TOP_MARKER = np.array([85, 255, 255])
 LOWER_BOTTOM_MARKER = np.array([90, 50, 50])  # BLUE
 UPPER_BOTTOM_MARKER = np.array([130, 255, 255])
+
+
 
 # Initialize CSV File
 def initialize_csv():

@@ -20,14 +20,13 @@ const Graph = () => {
           final_day: data.final_day ? parseFloat(data.final_day) : null,
         });
 
-        // Create new table data with most recent 7 entries
         const newTableData = data.days.map((day, index) => ({
-          Timestamp: new Date(Date.now() - data.days.length * 86400000) // Approximate timestamp
-            .toISOString(),
+          Timestamp: new Date(
+            Date.now() - data.days.length * 86400000
+          ).toISOString(),
           "Plant Height (cm)": data.height[index].toFixed(2),
         }));
 
-        // Keep only the last 7 records, fill empty rows if needed
         const filledTable = [...newTableData.slice(-7)];
 
         setTableData(filledTable);
@@ -63,58 +62,58 @@ const Graph = () => {
 
   return (
     <div
-      className="flex flex-col-2 items-center justify-between  py-10 lg:mx-72"
+      className="flex flex-col items-center justify-between  py-10 "
       href="#graph"
     >
-      <div className="flex flex-col items-center ">
-        <h2>Plant Growth Over Time (cm)</h2>
-        <Plot
-          data={[
-            {
-              x: growthData.days,
-              y: growthData.height,
-              type: "scatter",
-              mode: "lines+markers",
-              marker: { color: "blue" },
-            },
-          ]}
-          layout={{
-            title: "Plant Growth Over Time",
-            xaxis: { title: "Days" },
-            yaxis: { title: "Height (cm)" },
-          }}
-        />
-        <button
-          onClick={clearData}
-          className="bg-red-500 text-white py-2 px-6 rounded-lg shadow-md border-b-4 border-red-600 mt-5"
-        >
-          Clear Data
-        </button>
-      </div>
-      <div className="flex flex-col items-center ">
-        <h2 className="">Recent Data (Last 7 Entries)</h2>
-        <table className="table-auto border-collapse border border-gray-400">
-          <thead>
-            <tr className="bg-green-700 text-white">
-              <th className="border border-gray-300 px-4 py-2">Timestamp</th>
-              <th className="border border-gray-300 px-4 py-2">
-                Plant Height (cm)
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {tableData.map((row, index) => (
-              <tr key={index}>
-                <td className="border border-gray-300 px-4 py-2">
-                  {row.Timestamp}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  {row["Plant Height (cm)"]}
-                </td>
+      <h2 className="text-3xl font-bold text-green-700">
+        Plant Growth Over Time (cm)
+      </h2>
+
+      <div className="flex flex-col-2 items-center justify-between gap-x-8">
+        <div className="flex flex-col items-center ">
+          <Plot
+            data={[
+              {
+                x: growthData.days,
+                y: growthData.height,
+                type: "scatter",
+                mode: "lines+markers",
+                marker: { color: "blue" },
+              },
+            ]}
+            layout={{
+              title: "Plant Growth Over Time",
+              xaxis: { title: "Days" },
+              yaxis: { title: "Height (cm)" },
+            }}
+          />
+          <button
+            onClick={clearData}
+            className="bg-red-500 text-white py-2 px-6 rounded-lg shadow-md border-b-4 border-red-600 mt-5"
+          >
+            Clear Data
+          </button>
+        </div>
+        <div className="flex flex-col items-center ">
+          <table className="table-auto border-collapse ">
+            <thead>
+              <tr className="bg-green-700 text-white">
+                <th className=" px-8  py-2">Timestamp</th>
+                <th className=" px-8  py-2">Plant Height (cm)</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {tableData.map((row, index) => (
+                <tr key={index}>
+                  <td className=" px-24 py-2">{row.Timestamp}</td>
+                  <td className=" px-24 py-2 justify-center flex">
+                    {row["Plant Height (cm)"]}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

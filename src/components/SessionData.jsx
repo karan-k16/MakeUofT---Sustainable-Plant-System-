@@ -32,8 +32,8 @@ const SessionData = () => {
         </h2>
 
         {/* Added a div wrapper with a fixed height and scrollbar */}
-        <div className="w-full max-h-96 overflow-y-auto border border-gray-300 rounded-lg">
-          <table className="w-full text-center border border-gray-300">
+        <div className="w-full max-h-96 overflow-y-auto rounded-lg">
+          <table className="w-full text-center">
             <thead>
               <tr className="bg-green-700 text-white">
                 <th className="p-2">Timestamp</th>
@@ -44,7 +44,7 @@ const SessionData = () => {
             </thead>
             <tbody>
               {data.map((row, index) => (
-                <tr key={index} className="border-t">
+                <tr key={index} className="">
                   <td className="p-2">{row.Timestamp}</td>
                   <td className="p-2">{row.Humidity}</td>
                   <td className="p-2">{row.Temperature}</td>
