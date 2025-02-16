@@ -44,6 +44,8 @@ We used an **Arduino** and the technologies listed in our orders:
 - **Enhancing our computer vision model** using **Hugging Face** to estimate plant depth automatically.
 - **Optimizing the codebase** for better efficiency and real-time performance.
 
-We’re excited to continue improving **WaterYouDoing** and making plant monitoring smarter and more accessible!
-Created By: Karan Kardam, Daksh Khanna, Justin Lam, Arya Lum
+We’re excited to continue improving **WaterYouDoing** and making plant monitoring smarter and more accessible!  
+
+Created By: Karan Kardam, Daksh Khanna, Justin Lam, Arya Lum  
+
 Built With: Arduino, OpenCV, Python, React, Flask
