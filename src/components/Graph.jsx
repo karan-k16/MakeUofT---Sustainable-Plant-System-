@@ -62,7 +62,10 @@ const Graph = () => {
   }, []);
 
   return (
-    <div className="flex flex-col-2 items-center justify-between  py-10 lg:mx-72" href="#graph">
+    <div
+      className="flex flex-col-2 items-center justify-between  py-10 lg:mx-72"
+      href="#graph"
+    >
       <div className="flex flex-col items-center ">
         <h2>Plant Growth Over Time (cm)</h2>
         <Plot
@@ -92,7 +95,7 @@ const Graph = () => {
         <h2 className="">Recent Data (Last 7 Entries)</h2>
         <table className="table-auto border-collapse border border-gray-400">
           <thead>
-            <tr>
+            <tr className="bg-green-700 text-white">
               <th className="border border-gray-300 px-4 py-2">Timestamp</th>
               <th className="border border-gray-300 px-4 py-2">
                 Plant Height (cm)

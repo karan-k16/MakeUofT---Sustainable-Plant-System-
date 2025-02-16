@@ -19,7 +19,7 @@ CORS(app)
 cap = cv2.VideoCapture(0)
 csv_file = "plant_growth_log.csv"
 recording = False  
-depth_cm = 50  # Default depth value, updated via API
+depth_cm = 50  # Assumed depth value, updated via User
 
 # HSV Ranges for Color Detection
 LOWER_TOP_MARKER = np.array([0, 120, 70])   # RED

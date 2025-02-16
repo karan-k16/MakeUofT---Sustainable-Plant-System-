@@ -11,7 +11,7 @@ const SessionData = () => {
         Papa.parse(csv, {
           header: true, // Convert rows into JSON format
           dynamicTyping: true, // Convert numbers automatically
-          complete: (result) => setData(result.data),
+          complete: (result) => setData(result.data.reverse()), // Reverse order to show most recent entries first
         });
       })
       .catch((error) => console.error("Error fetching CSV:", error));
@@ -31,26 +31,29 @@ const SessionData = () => {
           Current Stats
         </h2>
 
-        <table className="w-full text-center border border-gray-300">
-          <thead>
-            <tr className="bg-green-700 text-white">
-              <th className="p-2">Timestamp</th>
-              <th className="p-2">Humidity</th>
-              <th className="p-2">Temperature</th>
-              <th className="p-2">Soil Moisture</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((row, index) => (
-              <tr key={index} className="border-t">
-                <td className="p-2">{row.Timestamp}</td>
-                <td className="p-2">{row.Humidity}</td>
-                <td className="p-2">{row.Temperature}</td>
-                <td className="p-2">{row["Soil Moisture"]}</td>
+        {/* Added a div wrapper with a fixed height and scrollbar */}
+        <div className="w-full max-h-96 overflow-y-auto border border-gray-300 rounded-lg">
+          <table className="w-full text-center border border-gray-300">
+            <thead>
+              <tr className="bg-green-700 text-white">
+                <th className="p-2">Timestamp</th>
+                <th className="p-2">Humidity</th>
+                <th className="p-2">Temperature</th>
+                <th className="p-2">Soil Moisture</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {data.map((row, index) => (
+                <tr key={index} className="border-t">
+                  <td className="p-2">{row.Timestamp}</td>
+                  <td className="p-2">{row.Humidity}</td>
+                  <td className="p-2">{row.Temperature}</td>
+                  <td className="p-2">{row["Soil Moisture"]}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
