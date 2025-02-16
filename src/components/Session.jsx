@@ -1,60 +1,60 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import Plot from "react-plotly.js";
+import React, { useState } from "react";
 
 const Session = () => {
-  const [growthData, setGrowthData] = useState({
-    days: [],
-    height: [],
-    final_day: null,
-  });
+  const [isRecording, setIsRecording] = useState(false);
 
-  useEffect(() => {
-    const fetchGrowthData = async () => {
-      const response = await fetch("http://127.0.0.1:5000/growth_data");
-      const data = await response.json();
-      setGrowthData(data);
-    };
+  const toggleRecording = async () => {
+    try {
+      if (!isRecording) {
+        // Start recording
+        const response = await fetch("http://127.0.0.1:5000/start_recording", {
+          method: "POST",
+        });
+        const data = await response.json();
+        console.log(data.message);
+      } else {
+        // Stop recording
+        const response = await fetch("http://127.0.0.1:5000/stop_recording", {
+          method: "POST",
+        });
+        const data = await response.json();
+        console.log(data.message);
+      }
 
-    fetchGrowthData();
-    const interval = setInterval(fetchGrowthData, 5000);
-    return () => clearInterval(interval);
-  }, []);
+      // Toggle the recording state
+      setIsRecording((prevState) => !prevState);
+    } catch (error) {
+      console.error("Error toggling recording:", error);
+    }
+  };
+
   return (
-    <div>
-      <h1>Plant Growth Tracker</h1>
-      <img
-        src="http://127.0.0.1:5000/video_feed"
-        width="640"
-        height="480"
-        alt="Live Feed"
-      />
-
-      <h2>Growth Prediction</h2>
-      {growthData.final_day && (
-        <p>
-          Estimated Final Growth Day:{" "}
-          <strong>{growthData.final_day.toFixed(2)}</strong>
-        </p>
-      )}
-
-      <Plot
-        data={[
-          {
-            x: growthData.days,
-            y: growthData.height,
-            type: "scatter",
-            mode: "lines+markers",
-            marker: { color: "blue" },
-          },
-        ]}
-        layout={{
-          title: "Plant Growth Over Time",
-          xaxis: { title: "Days" },
-          yaxis: { title: "Height (px)" },
-        }}
-        style={{ width: "100%", height: "400px" }}
-      />
+    <div className="h-screen flex flex-col-2 lg:mx-72 justify-between items-center">
+      <div className="shadow-2xl relative">
+        <div className="absolute bg-red-700 h-10 w-10 rounded-full top-6 left-10 animate-pulse -translate-x-1/2 z-10 text-white" />
+        <img
+          src="http://127.0.0.1:5000/video_feed"
+          width="800"
+          height="600"
+          alt="Live Feed"
+          className="z-0"
+        />
+      </div>
+      <div className="flex flex-col items-center gap-y-5">
+        <h1 className="text-4xl  text-zinc-800   ">
+          What are you doing plant!
+        </h1>
+        <button
+          onClick={toggleRecording}
+          className={
+            isRecording
+              ? "bg-red-500 text-white py-2 px-6 rounded-lg shadow-md border-b-4 border-red-600"
+              : "bg-green-500 text-white py-2 px-6 rounded-lg shadow-md border-b-4 border-green-600"
+          }
+        >
+          {isRecording ? "Stop Recording" : "Start Recording"}
+        </button>
+      </div>
     </div>
   );
 };

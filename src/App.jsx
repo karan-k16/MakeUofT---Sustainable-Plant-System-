@@ -4,14 +4,15 @@ import Hero from "./components/hero";
 import Session from "./components/Session";
 import Navbar from "./components/Navbar";
 import About from "./components/About";
+import Graph from "./components/Graph";
 
 function App() {
   return (
     <div>
       <Navbar />
-      <Hero />
-      <About />
-      {/* <Session /> */}
+
+      <Session />
+      <Graph />
     </div>
   );
 }

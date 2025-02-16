@@ -17,9 +17,7 @@ const Hero = () => {
       </div>
 
       <div className="flex flex-col items-center gap-y-5">
-        <h1 className="text-4xl  text-zinc-800   ">
-          What are you doing plant!
-        </h1>
+        
         <button
           className="bg-green-500 text-white font-bold py-2 px-6 rounded-lg shadow-md border-b-4 border-green-600"
           onClick={startTracking}
