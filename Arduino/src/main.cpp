@@ -20,9 +20,7 @@ Setup
 void setup() {
   delay(500);
   Serial.begin(9600);      // Initialize Serial Monitor (USB)
-  
   delay(1000);
-  Serial.println("Plant Data\n\n");
 }
 
 /*
@@ -41,7 +39,8 @@ void soilMoistureSensor() {
 
 void printAll(){
   // Format data string
-  String data = "Humidity: " + String(DHT.humidity) + "%, Temperature: " + String(DHT.temperature) + "C" + "\nSoil Moisture Value: " + String(moistureValue);
+  // String data = "Humidity: " + String(DHT.humidity) + "%, Temperature: " + String(DHT.temperature) + "C" + "\nSoil Moisture Value: " + String(moistureValue);
+  String data = String(DHT.humidity) + "\n" + String(DHT.temperature) + "\n" + String(moistureValue);
   Serial.println(data);
 }
 
