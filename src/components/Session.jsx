@@ -37,7 +37,7 @@ const Session = () => {
           width="800"
           height="600"
           alt="Live Feed"
-          className="z-0"
+          className="z-0 rounded-2xl border border-"
         />
       </div>
       <div className="flex flex-col items-center gap-y-5">

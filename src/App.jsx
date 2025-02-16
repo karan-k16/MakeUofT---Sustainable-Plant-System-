@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Plot from "react-plotly.js";
-import Hero from "./components/Hero";
+import Hero from "./components/hero";
 import Session from "./components/Session";
 import Navbar from "./components/Navbar";
 import About from "./components/About";
@@ -13,6 +13,7 @@ function App() {
 
       <Session />
       <Graph />
+      <About />
     </div>
   );
 }
