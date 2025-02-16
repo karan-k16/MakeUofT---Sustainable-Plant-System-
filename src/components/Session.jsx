@@ -29,7 +29,7 @@ const Session = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col-2 lg:mx-72 justify-between items-center">
+    <div className="h-screen flex flex-col-2 lg:mx-72 justify-between items-center" href="#session">
       <div className="shadow-2xl relative">
         <div className="absolute bg-red-700 h-10 w-10 rounded-full top-6 left-10 animate-pulse -translate-x-1/2 z-10 text-white" />
         <img

@@ -22,19 +22,13 @@ const Graph = () => {
 
         // Create new table data with most recent 7 entries
         const newTableData = data.days.map((day, index) => ({
-          Timestamp: new Date(
-            Date.now() - (data.days.length - index - 1) * 86400000
-          ) // Approximate timestamp
-            .toISOString()
-            .split("T")[0], // Format YYYY-MM-DD
+          Timestamp: new Date(Date.now() - data.days.length * 86400000) // Approximate timestamp
+            .toISOString(),
           "Plant Height (cm)": data.height[index].toFixed(2),
         }));
 
         // Keep only the last 7 records, fill empty rows if needed
         const filledTable = [...newTableData.slice(-7)];
-        while (filledTable.length < 7) {
-          filledTable.unshift({ Timestamp: "--", "Plant Height (cm)": "--" });
-        }
 
         setTableData(filledTable);
       }
@@ -68,8 +62,8 @@ const Graph = () => {
   }, []);
 
   return (
-    <div className="flex flex-col-2 items-center justify-between gap-y-5 py-10 lg:mx-72">
-      <div>
+    <div className="flex flex-col-2 items-center justify-between  py-10 lg:mx-72" href="#graph">
+      <div className="flex flex-col items-center ">
         <h2>Plant Growth Over Time (cm)</h2>
         <Plot
           data={[
@@ -87,15 +81,15 @@ const Graph = () => {
             yaxis: { title: "Height (cm)" },
           }}
         />
-      </div>
-      <div className="flex flex-col items-center ">
         <button
           onClick={clearData}
           className="bg-red-500 text-white py-2 px-6 rounded-lg shadow-md border-b-4 border-red-600 mt-5"
         >
           Clear Data
         </button>
-        <h2 className="mt-5">Recent Data (Last 7 Entries)</h2>
+      </div>
+      <div className="flex flex-col items-center ">
+        <h2 className="">Recent Data (Last 7 Entries)</h2>
         <table className="table-auto border-collapse border border-gray-400">
           <thead>
             <tr>
